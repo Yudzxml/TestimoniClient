@@ -163,7 +163,7 @@
     }
 
     function load() {
-      fetch("/api/testimonials")
+      fetch("https://testimoniyudzxml.vercel.app/api/github")
         .then(res => res.json())
         .then(data => {
           testimonials = Array.isArray(data) ? data : [];
@@ -206,7 +206,7 @@
 
       document.getElementById("submitBtn").innerText = "Simpan Testimoni";
 
-      fetch("/api/testimonials", {
+      fetch("https://testimoniyudzxml.vercel.app/api/github", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(testimonials)
@@ -230,7 +230,7 @@
     function hapus(i) {
       if (confirm("Hapus testimoni ini?")) {
         testimonials.splice(i, 1);
-        fetch("/api/testimonials", {
+        fetch("https://testimoniyudzxml.vercel.app/api/github", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(testimonials)
