@@ -1,0 +1,126 @@
+
+    body {
+      background: #0a0a0a;
+      color: #0ff;
+      font-family: 'Orbitron', sans-serif;
+      padding: 2rem;
+    }
+
+    .header {
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      text-shadow: 0 0 10px #0ff;
+    }
+
+    p {
+      font-size: 1rem;
+      margin: 0.3rem 0;
+    }
+
+    a {
+      color: #0ff;
+      text-decoration: underline;
+    }
+
+    hr {
+      border: 0;
+      border-top: 1px solid #0ff4;
+      margin: 1rem 0 2rem 0;
+    }
+
+    #testimonialList {
+      max-width: 800px;
+      margin: auto;
+    }
+
+    .testimonial {
+      background: #111;
+      margin: 1rem 0;
+      padding: 1rem;
+      border-radius: 12px;
+      box-shadow: 0 0 8px #0ff4;
+      color: #0ff;
+      transition: all 0.3s ease;
+    }
+
+    .testimonial .header {
+      outline: none;
+      -webkit-tap-highlight-color: transparent;
+      cursor: pointer;
+      white-space: pre-line;
+      user-select: none;
+    }
+
+    .testimonial .header:hover {
+      text-shadow: 0 0 5px #0ff;
+    }
+
+    .testimonial .header em {
+      outline: none;
+      -webkit-tap-highlight-color: transparent;
+      display: block;
+      margin-top: 4px;
+      font-style: normal;
+      font-size: 0.85rem;
+      color: #0ffb;
+      animation: blink 1.5s infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+
+    .testimonial .details {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease, opacity 0.4s ease;
+      opacity: 0;
+    }
+
+    .testimonial.open .details {
+      max-height: 500px;
+      opacity: 1;
+      margin-top: 0.5rem;
+    }
+
+    img {
+      width: 100%;
+      max-height: 300px;
+      object-fit: cover;
+      border: 1px solid #0ff5;
+      border-radius: 8px;
+      box-shadow: 0 0 10px #0ff3;
+      cursor: zoom-in;
+    }
+
+    /* Modal Zoom */
+    #zoomModal {
+      display: none;
+      position: fixed;
+      z-index: 9999;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.9);
+      justify-content: center;
+      align-items: center;
+    }
+
+    #zoomModal img {
+      max-width: 90%;
+      max-height: 90%;
+      border: 3px solid #0ff;
+      border-radius: 12px;
+      box-shadow: 0 0 20px #0ff;
+      cursor: zoom-out;
+    }
+    .neon-number {
+     text-decoration: underline;
+     color: #00ffff;
+     font-weight: bold;
+    }
+  
