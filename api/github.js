@@ -94,4 +94,4 @@ module.exports = async (req, res) => {
   } else {
     res.writeHead(405).end('Method Not Allowed');
   }
-};￼Enter
+}
