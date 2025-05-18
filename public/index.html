@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TESTIMONI YUDZXML STORE</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      background: #0a0a0a;
+      color: #0ff;
+      font-family: 'Orbitron', sans-serif;
+      padding: 2rem;
+    }
+
+    .header {
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      text-shadow: 0 0 10px #0ff;
+    }
+
+    p {
+      font-size: 1rem;
+      margin: 0.3rem 0;
+    }
+
+    a {
+      color: #0ff;
+      text-decoration: underline;
+    }
+
+    hr {
+      border: 0;
+      border-top: 1px solid #0ff4;
+      margin: 1rem 0 2rem 0;
+    }
+
+    #testimonialList {
+      max-width: 800px;
+      margin: auto;
+      margin-top: 1rem;
+    }
+
+    .testimonial {
+      background: #111;
+      margin: 1.5rem 0;
+      padding: 1rem;
+      border-radius: 12px;
+      box-shadow: 0 0 8px #0ff4;
+      position: relative;
+      color: #0ff;
+    }
+
+    .testimonial strong {
+      display: inline-block;
+      min-width: 80px;
+    }
+
+    img {
+      max-width: 200px;
+      margin-top: 0.5rem;
+      border: 1px solid #0ff5;
+      border-radius: 8px;
+      box-shadow: 0 0 10px #0ff3;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>TESTIMONI YUDZXML STORE</h1>
+    <p>WHATSAPP: <a href="https://wa.me/6283872031397">CLICK</a></p>
+    <p>LINK STORE: <a href="https://yudzxmlstore77.x-server.my.id">CLICK</a></p>
+    <p>JUMLAH CUSTOMER: <span id="totalCustomer">251</span></p>
+    <hr />
+  </div>
+
+  <div id="testimonialList"></div>
+
+  <script>
+    fetch("/api/testimonials")
+      .then(res => res.json())
+      .then(data => {
+        const list = document.getElementById("testimonialList");
+        const groupLink = "https://yudzxmlstore77.x-server.my.id"; // ganti sesuai link grupmu
+        document.getElementById("groupLink").innerHTML = `<a href="${groupLink}">${groupLink}</a>`;
+        document.getElementById("totalCustomer").textContent = data.length;
+
+        data.forEach(t => {
+          const div = document.createElement("div");
+          div.className = "testimonial";
+          div.innerHTML = `
+            <strong>Customer:</strong> ${t.customer}<br>
+            <strong>Tanggal:</strong> ${t.date}<br>
+            <img src="${t.image}" alt="Testimoni" />
+          `;
+          list.appendChild(div);
+        });
+      });
+  </script>
+</body>
+</html
