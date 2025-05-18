@@ -68,6 +68,16 @@ const updateFile = (newContent, sha) => new Promise((resolve, reject) => {
 });
 
 module.exports = async (req, res) => {
+  // Tambahkan header CORS untuk semua request
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+
+  // Tangani preflight request dari browser
+  if (req.method === 'OPTIONS') {
+    return res.writeHead(200).end();
+  }
+
   if (req.method === 'GET') {
     try {
       const file = await getFileSha();
@@ -94,4 +104,4 @@ module.exports = async (req, res) => {
   } else {
     res.writeHead(405).end('Method Not Allowed');
   }
-}
+};
