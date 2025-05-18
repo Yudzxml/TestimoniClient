@@ -2,136 +2,246 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>YUDZXML STORE 77</title>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet" />
   <style>
     body {
-      background: #0a0a0a;
+      margin: 0;
+      background-color: #000;
       color: #0ff;
       font-family: 'Orbitron', sans-serif;
-      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem 1rem;
+      min-height: 100vh;
     }
 
     h1 {
+      font-size: 2.5rem;
       text-align: center;
-      font-size: 2rem;
       margin-bottom: 2rem;
-      text-shadow: 0 0 10px #0ff;
+      text-shadow: 0 0 10px #0ff, 0 0 20px #0ff;
     }
 
     .form-container {
-      max-width: 600px;
-      margin: 2rem auto;
-      padding: 1.5rem;
       background: #111;
-      border-radius: 12px;
-      box-shadow: 0 0 15px #0ff4;
+      padding: 1.5rem 2rem;
+      border-radius: 16px;
+      box-shadow: 0 0 20px #0ff9;
+      max-width: 480px;
+      width: 100%;
       display: flex;
       flex-direction: column;
       gap: 1rem;
     }
 
-    input, button {
-      width: 100%;
-      padding: 1rem;
-      background: #111;
+    input[type="file"] {
+      padding: 0.3rem;
+      background: #222;
+      border-radius: 8px;
       border: 1px solid #0ff;
       color: #0ff;
-      border-radius: 8px;
-      font-size: 1rem;
-      transition: 0.3s;
-      box-sizing: border-box;
     }
 
-    input:focus, button:hover {
+    input[type="text"], input[type="date"] {
+      padding: 1rem;
+      border-radius: 12px;
+      border: 1px solid #0ff;
+      background: #000;
+      color: #0ff;
+      font-size: 1rem;
       outline: none;
-      box-shadow: 0 0 10px #0ff;
+      box-shadow: 0 0 8px #0ff6;
+      transition: 0.3s;
+    }
+
+    input[type="text"]:focus, input[type="date"]:focus, input[type="file"]:focus {
+      box-shadow: 0 0 20px #0ff;
+      border-color: #0ff;
     }
 
     button {
+      background: #0ff;
+      color: #000;
+      font-weight: 700;
+      border: none;
+      padding: 1rem;
+      border-radius: 16px;
+      font-size: 1.2rem;
       cursor: pointer;
-      font-weight: bold;
-      max-width: 200px;
-      align-self: center;
+      transition: background 0.3s ease;
+      box-shadow: 0 0 15px #0ff9;
     }
 
-    .testimonial {
-      background: #111;
-      margin: 1.5rem 0;
-      padding: 1rem;
+    button:hover {
+      background: #00cccc;
+      box-shadow: 0 0 25px #00ffff;
+    }
+
+    #testimonialList {
+      margin-top: 3rem;
+      max-width: 800px;
+      width: 100%;
+    }
+
+.testimonial-summary {
+  display: flex;
+  flex-direction: column; /* teks bertumpuk */
+  justify-content: center; /* vertical center */
+  align-items: center; /* horizontal center */
+  font-weight: 400;
+  font-size: 0.85rem;
+  color: #66ffffcc;
+  gap: 4px;
+  min-width: 130px;
+  user-select: text;
+  text-align: center; /* supaya teks dalam elemen span rata tengah */
+}
+
+.testimonial-summary span {
+  display: block;
+  white-space: nowrap;
+}
+
+.testimonial {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  max-height: 90px; /* sedikit lebih tinggi supaya cukup untuk 2 baris */
+  cursor: pointer;
+  overflow: hidden;
+  transition: max-height 0.4s ease, padding 0.4s ease;
+  position: relative;
+  background: #111;
+  border-radius: 12px;
+  box-shadow: 0 0 12px #0ff4;
+  margin-bottom: 1.25rem;
+  user-select: none;
+}
+
+.testimonial.open {
+  max-height: 900px;
+  flex-direction: column;
+  cursor: default;
+  padding-bottom: 2rem;
+}
+
+.testimonial.open .testimonial-summary {
+  margin-bottom: 1rem;
+}
+
+.testimonial-details {
+  font-size: 0.85rem; /* samain dengan summary */
+  color: #0ff;
+  text-align: right;
+  flex: 1;
+  user-select: text;
+  display: none;
+  line-height: 1.3;
+}
+
+.testimonial.open .testimonial-details {
+  display: block;
+  margin-top: 0;
+  text-align: left;
+}
+
+.testimonial-details strong {
+  font-weight: 700;
+  margin-right: 5px;
+}
+
+.testimonial-details img {
+  width: 180px;
+  margin-top: 1rem;
+  border-radius: 12px;
+  border: 1px solid #0ff6;
+  box-shadow: 0 0 20px #0ff9;
+  user-select: text;
+}
+
+    .testimonial-details img {
+      width: 180px;
+      margin-top: 1rem;
       border-radius: 12px;
-      box-shadow: 0 0 8px #0ff4;
-      position: relative;
+      border: 1px solid #0ff6;
+      box-shadow: 0 0 20px #0ff9;
+      user-select: text;
     }
 
     .actions {
       position: absolute;
-      right: 1rem;
-      top: 1rem;
+      bottom: 12px;
+      right: 15px;
       display: flex;
-      gap: 0.5rem;
+      gap: 0.8rem;
     }
 
     .actions button {
-      padding: 0.3rem 0.8rem;
-      background: #0ff1;
-      border: 1px solid #0ff;
+      background: #0ff8;
+      color: #000;
+      border: none;
+      padding: 0.35rem 0.8rem;
+      border-radius: 8px;
+      font-weight: 600;
       font-size: 0.85rem;
-      border-radius: 6px;
       cursor: pointer;
       transition: background-color 0.3s;
     }
 
     .actions button:hover {
-      background-color: #0ff9;
-    }
-
-    img {
-      max-width: 200px;
-      margin-top: 0.5rem;
-      border: 1px solid #0ff5;
-      border-radius: 8px;
-      box-shadow: 0 0 10px #0ff3;
-    }
-
-    #testimonialList {
-      max-width: 800px;
-      margin: auto;
-      margin-top: 2rem;
+      background-color: #00ffff;
     }
 
     .info-bottom {
+      margin-top: auto;
+      padding-top: 2rem;
       text-align: center;
-      margin-top: 2rem;
-      color: #0ff;
       font-size: 0.9rem;
+      color: #0ff8;
+      user-select: none;
     }
-
-    .info-bottom a {
-      color: #0ff;
-      text-decoration: underline;
+    .underline {
+       text-decoration: underline;
+      }
+    @media (max-width: 600px) {
+      .form-container {
+        padding: 1rem 1.25rem;
+      }
+      .testimonial-details img {
+        width: 100%;
+      }
+      .actions {
+        position: static;
+        margin-top: 1rem;
+        justify-content: flex-end;
+      }
     }
   </style>
 </head>
 <body>
+  <h1>YUDZXML STORE</h1>
+
   <div class="form-container">
-    <h1>YUDZXML STORE</h1>
-    <input type="text" id="image" placeholder="URL Gambar Testimoni" />
-    <input type="text" id="barang" placeholder="Nama Barang" />
-    <input type="text" id="harga" placeholder="Harga Barang" />
-    <input type="text" id="date" placeholder="Tanggal (cth: 18-05-2025)" />
-    <input type="text" id="customer" placeholder="Nama Customer" />
-    <button id="submitBtn" onclick="submit()">Simpan Testimoni</button>
+    <input type="file" id="imageFile" accept="image/png, image/jpeg" />
+    <input type="text" id="barang" placeholder="Nama Barang" autocomplete="off" />
+    <input type="text" id="harga" placeholder="Harga Barang" autocomplete="off" />
+    <input type="text" id="date" placeholder="Tanggal (contoh: 18-05-2025)" autocomplete="off" />
+    <input type="text" id="customer" placeholder="Nama Customer" autocomplete="off" />
+    <button id="submitBtn" onclick="submitTestimoni()">Simpan Testimoni</button>
   </div>
 
   <div id="testimonialList"></div>
 
   <div class="info-bottom">
-    <p>YUDZXML STORE 77<a href="#" target="_blank"></a></p>
-    <p>© 2025 YUDZXML<a href="#" target="_blank"></a></p>
+    <p>YUDZXML STORE 77</p>
+    <p>© 2025 YUDZXML</p>
   </div>
 
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script>
     let testimonials = [];
     let editIndex = null;
@@ -139,106 +249,170 @@
     function render() {
       const list = document.getElementById("testimonialList");
       list.innerHTML = "";
+
       if (testimonials.length === 0) {
-        list.innerHTML = "<p style='text-align:center;'>Belum ada testimoni.</p>";
+        list.innerHTML = '<p style="text-align:center; color:#0ff9;">Belum ada testimoni.</p>';
         return;
       }
 
       testimonials.forEach((t, i) => {
         const div = document.createElement("div");
         div.className = "testimonial";
-        div.innerHTML = `
-          <strong>CUSTOMER:</strong> ${t.customer}<br>
-          <strong>TANGGAL:</strong> ${t.date}<br>
-          <strong>BARANG:</strong> ${t.barang}<br>
-          <strong>HARGA:</strong> ${t.harga}<br>
-          <img src="${t.image}" alt="Testimoni">
-          <div class="actions">
-            <button onclick="edit(${i})">Edit</button>
-            <button onclick="hapus(${i})">Hapus</button>
-          </div>
-        `;
+div.innerHTML = `
+  <div class="testimonial-summary">
+    <span>CUSTTOMER: <span class="underline">${t.customer}</span></span>
+    <span>TANGGAL: <span class="underline">${t.date}</span></span>
+  </div>
+  <div class="testimonial-details">
+    <strong>BARANG:</strong> <span class="underline">${t.barang}</span><br>
+    <strong>HARGA:</strong> <span class="underline">${t.harga}</span><br>
+    <img src="${t.image}" alt="Gambar Testimoni" />
+    <div class="actions">
+      <button onclick="editTestimoni(event, ${i})">EDIT</button>
+      <button onclick="hapusTestimoni(event, ${i})">HAPUS</button>
+    </div>
+  </div>
+`;
+
+        div.addEventListener("click", (e) => {
+          if (e.target.tagName.toLowerCase() === 'button') return;
+          div.classList.toggle("open");
+        });
+
         list.appendChild(div);
       });
     }
 
-    function load() {
+    function clearForm() {
+      document.getElementById("imageFile").value = "";
+      document.getElementById("barang").value = "";
+      document.getElementById("harga").value = "";
+      document.getElementById("date").value = "";
+      document.getElementById("customer").value = "";
+      document.getElementById("submitBtn").innerText = "Simpan Testimoni";
+      document.getElementById("submitBtn").disabled = false;
+      document.getElementById("imageFile").disabled = false;
+      editIndex = null;
+    }
+
+    async function submitTestimoni() {
+      const btn = document.getElementById("submitBtn");
+      btn.disabled = true;
+      btn.innerText = "Menyimpan...";
+
+      const fileInput = document.getElementById("imageFile");
+      const barang = document.getElementById("barang").value.trim();
+      const harga = document.getElementById("harga").value.trim();
+      const date = document.getElementById("date").value.trim();
+      const customer = document.getElementById("customer").value.trim();
+
+      if (!barang || !harga || !date || !customer) {
+        alert("Semua field wajib diisi.");
+        btn.disabled = false;
+        btn.innerText = "Simpan Testimoni";
+        return;
+      }
+
+      try {
+        let url = "";
+
+        if (editIndex === null) {
+          if (fileInput.files.length === 0) {
+            alert("Mohon pilih file gambar testimoni.");
+            btn.disabled = false;
+            btn.innerText = "Simpan Testimoni";
+            return;
+          }
+
+          const file = fileInput.files[0];
+          if (!['image/jpeg', 'image/png'].includes(file.type)) {
+            alert("Hanya file JPG atau PNG yang diperbolehkan.");
+            btn.disabled = false;
+            btn.innerText = "Simpan Testimoni";
+            return;
+          }
+
+          const buffer = await file.arrayBuffer();
+          const uint8Array = new Uint8Array(buffer);
+
+          const uploadRes = await axios.post("https://api-upload-cyan.vercel.app/api/upload", uint8Array, {
+            headers: {
+              'Content-Type': file.type || 'application/octet-stream',
+              'x-filename': file.name
+            }
+          });
+
+          url = uploadRes.data?.data?.url;
+          if (!url) throw new Error("Gagal mendapatkan URL gambar");
+
+          testimonials.push({ image: url, barang, harga, date, customer });
+        } else {
+          testimonials[editIndex] = {
+            ...testimonials[editIndex],
+            barang, harga, date, customer
+          };
+        }
+
+        await fetch("https://testimoniyudzxml.vercel.app/api/github", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(testimonials)
+        });
+
+        clearForm();
+        loadTestimonials();
+      } catch (err) {
+        console.error(err);
+        alert("Terjadi kesalahan saat menyimpan testimoni.");
+        btn.disabled = false;
+        btn.innerText = "Simpan Testimoni";
+      }
+    }
+
+    function editTestimoni(e, i) {
+      e.stopPropagation();
+      const t = testimonials[i];
+      clearForm();
+      alert("Edit hanya bisa mengubah Nama Customer, Tanggal, Nama Barang, dan Harga.\nUntuk mengubah gambar, silakan hapus dan tambah ulang.");
+      document.getElementById("barang").value = t.barang;
+      document.getElementById("harga").value = t.harga;
+      document.getElementById("date").value = t.date;
+      document.getElementById("customer").value = t.customer;
+      document.getElementById("imageFile").disabled = true;
+      editIndex = i;
+      document.getElementById("submitBtn").innerText = "Perbarui Testimoni";
+    }
+
+    function hapusTestimoni(e, i) {
+      e.stopPropagation();
+      if (confirm("Yakin ingin menghapus testimoni ini?")) {
+        testimonials.splice(i, 1);
+        fetch("https://testimoniyudzxml.vercel.app/api/github", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(testimonials)
+        }).then(() => {
+          loadTestimonials();
+          clearForm();
+        });
+      }
+    }
+
+    function loadTestimonials() {
       fetch("https://testimoniyudzxml.vercel.app/api/github")
         .then(res => res.json())
         .then(data => {
           testimonials = Array.isArray(data) ? data : [];
           render();
         })
-        .catch(() => {
+        .catch(err => {
+          console.error("Gagal load data:", err);
           testimonials = [];
           render();
         });
     }
 
-    function clearForm() {
-      document.getElementById("image").value = "";
-      document.getElementById("barang").value = "";
-      document.getElementById("harga").value = "";
-      document.getElementById("date").value = "";
-      document.getElementById("customer").value = "";
-      document.getElementById("submitBtn").innerText = "Simpan Testimoni";
-    }
-
-    function submit() {
-      const image = document.getElementById("image").value.trim();
-      const barang = document.getElementById("barang").value.trim();
-      const harga = document.getElementById("harga").value.trim();
-      const date = document.getElementById("date").value.trim();
-      const customer = document.getElementById("customer").value.trim();
-
-      if (!image || !barang || !harga || !date || !customer) {
-        return alert("Semua field wajib diisi.");
-      }
-
-      const newEntry = { image, barang, harga, date, customer };
-
-      if (editIndex !== null) {
-        testimonials[editIndex] = newEntry;
-        editIndex = null;
-      } else {
-        testimonials.push(newEntry);
-      }
-
-      document.getElementById("submitBtn").innerText = "Simpan Testimoni";
-
-      fetch("https://testimoniyudzxml.vercel.app/api/github", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(testimonials)
-      }).then(() => {
-        clearForm();
-        load();
-      });
-    }
-
-    function edit(i) {
-      const t = testimonials[i];
-      document.getElementById("image").value = t.image;
-      document.getElementById("barang").value = t.barang;
-      document.getElementById("harga").value = t.harga;
-      document.getElementById("date").value = t.date;
-      document.getElementById("customer").value = t.customer;
-      editIndex = i;
-      document.getElementById("submitBtn").innerText = "Perbarui Testimoni";
-    }
-
-    function hapus(i) {
-      if (confirm("Hapus testimoni ini?")) {
-        testimonials.splice(i, 1);
-        fetch("https://testimoniyudzxml.vercel.app/api/github", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(testimonials)
-        }).then(load);
-      }
-    }
-
-    load();
+    loadTestimonials();
   </script>
 </body>
 </html>
